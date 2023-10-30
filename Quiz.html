@@ -8,26 +8,82 @@
 </head>
 <body> 
     <div class="question_container">
-       <h1> Who is the greatest midfielder in premier league history? </h1>
+    <h1 id="question-text"> </h1>
+
+    <h2 id="feedback"> </h2>
+    
     </div>
-    <div class="answer_container">
-        <button class ="answer_container">
+    <div id="answers" class="answer_container">
+        <!-- <button class ="answer-button">
             Kevin De Bruyne 
         </button>
-        <button class ="answer_container">
+        <button class ="answer-button">
             David Silva
         </button>
-        <button class ="answer_container">
+        <button class ="answer-button">
            Bernardo Silva
-        </button>
-        
+        </button> -->
+    
     </div>
-    <script>
-        let exampleDictionary = {
-            "name" : "Hader",
-            "job" : "Sales",
-            "age" : 25
+    <script> 
+        let question1 = {
+            "question" : "What's the best football team in the world?",
+            "possible" : ["Manchester City", "Real Madrid", "Inter Miami","Burnley"],
+            "answer" : "Manchester City"
         }
+        let question2 = {
+            "question" : "Which football player has the most assists under Pep Guardiola?",
+            "possible" : ["Lionel Messi", "Kevin De Bruyne", "Xavi","Sergio Aguero"],
+            "answer" : "Kevin De Bruyne"
+        }
+        let question3 = {
+            "question" : "Which football player has played the most minutes under Pep Guardiola?",
+            "possible" : ["Lionel Messi", "Kevin De Bruyne", "Ederson Moraes","Bernardo Silva"],
+            "answer" : "Ederson Moraes"
+        }
+
+            const allTheQuestions = [question1, question2, question3]
+            let currentQuestion = 0
+
+            function setQuestions(){
+                document.getElementById("answers").innerHTML = ""
+                question = allTheQuestions[currentQuestion]
+
+            document.getElementById("question-text").innerHTML = question["question"]
+            
+            // same thing is " let h1element = document.getElementById("question-text")"
+            //h1element.innerHTML = question["question"]
+
+            for(let i = 0; i < question["possible"].length; i++){ //creating a loop for to add more possible answers
+                let possibleAnswer = question["possible"][i] // create a variable thats a possible answer "(i)""
+                let newButton = document.createElement("button") // new variable called button instead of <button>
+                newButton.className = "answer-button"  //class name equivalent of "class=""
+                newButton.innerHTML = possibleAnswer 
+                newButton.onclick = function(){
+                    let feedbackText = document.getElementById("feedback")
+                    if(possibleAnswer == question ["answer"]){
+                    feedbackText.innerHTML = "CORRECT" 
+                    if(currentQuestion == allTheQuestions.length - 1){
+                        currentQuestion = 0 
+                    }else{
+                    currentQuestion++
+                    }
+                    setQuestions()
+                    }else{
+                        feedbackText.innerHTML = "INCORRECT"
+                        this.style.color = "red"
+                        this.style.backgroundColor = "black"
+                        this.disabled = true
+                    
+                    }
+
+                }
+                document.getElementById("answers").appendChild(newButton) // nested the element 
+
+            }
+        }
+
+        setQuestions()
     </script>
 
 </body>

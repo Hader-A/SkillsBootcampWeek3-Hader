@@ -8,10 +8,21 @@
     border-radius: 16px;
     font-weight: bold;
     font-size: 24pt;
-    color : #FFC659;
+    color : #6CABDD;
+    cursor:pointer;
+    transition: 0.1s
 }
 
-body {
+.answer-button:disabled{
+    background-color: gray;
+}
+
+.answer-button:hover{
+    scale: 130%
+
+}
+
+body{
     display: flex;
     flex: 1;
     height: 90vh;
@@ -27,7 +38,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    flex-direction: column;
 }
 
 .answer_container{
